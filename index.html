@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gubloo Play — Casual Games Crafted With Warmth</title>
+<meta name="description" content="Gubloo Play is an independent game studio building warm, handcrafted casual games for mobile players around the world.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand:#faf5ee;
+    --sand-2:#f3ead9;
+    --card:#fffdfa;
+    --ink:#2b211a;
+    --ink-soft:#6f6055;
+    --line:#e8dbca;
+    --clay:#c2410c;
+    --clay-soft:#ea6a2b;
+    --ochre:#d97706;
+    --olive:#5f7a4a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Karla',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size:17px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.01em;line-height:1.15}
+  a{color:var(--clay);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,245,238,.88);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .logo{display:flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-weight:700;font-size:1.32rem;letter-spacing:-.02em}
+  .logo .seed{
+    width:34px;height:34px;border-radius:50% 50% 50% 12%;
+    background:linear-gradient(140deg,var(--clay),var(--ochre));
+    box-shadow:0 3px 0 rgba(43,33,26,.14);
+  }
+  .nav ul{display:flex;gap:30px;list-style:none;font-size:.94rem;font-weight:500}
+  .nav ul a{color:var(--ink-soft)}
+  .nav ul a:hover{color:var(--clay);text-decoration:none}
+
+  /* ---------- hero ---------- */
+  .hero{padding:96px 0 84px;position:relative;overflow:hidden}
+  .hero:before{
+    content:"";position:absolute;right:-140px;top:-120px;width:460px;height:460px;
+    background:radial-gradient(circle at 30% 30%,rgba(234,106,43,.20),rgba(217,119,6,.09) 55%,transparent 72%);
+    border-radius:50%;pointer-events:none;
+  }
+  .hero:after{
+    content:"";position:absolute;left:-90px;bottom:-160px;width:340px;height:340px;
+    background:radial-gradient(circle at 50% 50%,rgba(95,122,74,.13),transparent 70%);
+    border-radius:50%;pointer-events:none;
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .tag{
+    display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--clay);background:rgba(194,65,12,.09);
+    border:1px solid rgba(194,65,12,.22);
+    padding:7px 15px;border-radius:999px;margin-bottom:26px;
+  }
+  .hero h1{font-size:clamp(2.4rem,5.6vw,4rem);max-width:19ch;margin-bottom:24px}
+  .hero h1 em{font-style:normal;color:var(--clay);position:relative}
+  .hero h1 em:after{
+    content:"";position:absolute;left:0;right:0;bottom:.06em;height:.30em;
+    background:rgba(217,119,6,.24);border-radius:3px;z-index:-1;
+  }
+  .hero p.lead{font-size:1.16rem;color:var(--ink-soft);max-width:56ch;margin-bottom:38px}
+  .btns{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;padding:14px 30px;border-radius:11px;font-weight:700;font-size:.96rem;
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .btn-primary{
+    background:var(--clay);color:#fff;box-shadow:0 4px 0 #8f2f08;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 0 #8f2f08;text-decoration:none}
+  .btn-ghost{
+    background:var(--card);color:var(--ink);border:1.5px solid var(--line);
+  }
+  .btn-ghost:hover{transform:translateY(-2px);border-color:var(--ochre);text-decoration:none}
+
+  /* ---------- facts strip ---------- */
+  .facts{
+    background:var(--sand-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:34px 0;
+  }
+  .facts .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+  .face{font-family:'Fraunces',serif;font-size:1.75rem;font-weight:700;color:var(--clay)}
+  .facts small{display:block;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px}
+
+  /* ---------- sections ---------- */
+  section{padding:88px 0}
+  .sec-head{max-width:62ch;margin-bottom:52px}
+  .sec-head h2{font-size:clamp(1.8rem,3.4vw,2.5rem);margin-bottom:16px}
+  .sec-head p{color:var(--ink-soft)}
+  .kicker{
+    font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--olive);margin-bottom:14px;display:block;
+  }
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:32px 28px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(43,33,26,.08);border-color:#ddc9ad}
+  .card .idx{
+    font-family:'Fraunces',serif;font-size:.95rem;font-weight:700;color:var(--ochre);
+    display:block;margin-bottom:14px;
+  }
+  .card h3{font-size:1.24rem;margin-bottom:11px}
+  .card p{color:var(--ink-soft);font-size:.97rem}
+
+  /* ---------- flagship ---------- */
+  .flagship{background:var(--sand-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .flag-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .flag-grid h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin-bottom:18px}
+  .flag-grid p{color:var(--ink-soft);margin-bottom:18px}
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+  .chip{
+    font-size:.82rem;font-weight:600;padding:7px 14px;border-radius:999px;
+    background:var(--card);border:1px solid var(--line);color:var(--ink-soft);
+  }
+  .art{
+    aspect-ratio:1/1;border-radius:22px;
+    background:
+      radial-gradient(circle at 28% 24%,rgba(255,255,255,.55),transparent 42%),
+      linear-gradient(150deg,var(--clay-soft) 0%,var(--ochre) 58%,#b45309 100%);
+    box-shadow:0 22px 48px rgba(194,65,12,.24), inset 0 0 0 1px rgba(255,255,255,.18);
+    display:grid;place-items:center;position:relative;overflow:hidden;
+  }
+  .art span{
+    font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2rem,5vw,3.1rem);
+    color:rgba(255,255,255,.94);letter-spacing:-.02em;text-shadow:0 3px 14px rgba(120,45,5,.35);
+  }
+  .art:after{
+    content:"";position:absolute;inset:auto -30% -45% -30%;height:70%;
+    background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.20),transparent 65%);
+  }
+
+  /* ---------- values ---------- */
+  .values{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:34px}
+  .val{border-top:3px solid var(--clay);padding-top:22px}
+  .val h3{font-size:1.14rem;margin-bottom:9px}
+  .val p{color:var(--ink-soft);font-size:.95rem}
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--ink);color:#f6ece0}
+  .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .contact h2{font-size:clamp(1.8rem,3.4vw,2.4rem);margin-bottom:16px;color:#fff}
+  .contact p{color:#c9b8a6}
+  .contact .kicker{color:var(--ochre)}
+  .mailbox{
+    background:rgba(255,255,255,.05);border:1px solid rgba(246,236,224,.16);
+    border-radius:16px;padding:30px;
+  }
+  .mailbox small{display:block;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:#a99684;margin-bottom:10px}
+  .mailbox a{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:600;color:var(--ochre);word-break:break-all}
+  .mailbox .row{padding:16px 0;border-bottom:1px solid rgba(246,236,224,.10)}
+  .mailbox .row:last-child{border-bottom:0;padding-bottom:0}
+
+  /* ---------- footer ---------- */
+  footer{background:#231a14;color:#9d8b7b;padding:44px 0;font-size:.9rem}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;align-items:center}
+  footer nav{display:flex;gap:24px}
+  footer a{color:#c9b8a6}
+  footer a:hover{color:var(--ochre)}
+
+  @media(max-width:820px){
+    .nav ul{display:none}
+    .facts .wrap{grid-template-columns:repeat(2,1fr);gap:28px}
+    .flag-grid,.contact .wrap{grid-template-columns:1fr;gap:38px}
+    .art{max-width:340px;margin:0 auto;width:100%}
+    section{padding:64px 0}
+    .hero{padding:70px 0 62px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo"><span class="seed"></span>Gubloo Play</div>
+    <ul>
+      <li><a href="#studio">Studio</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#values">Approach</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="tag">Independent Game Studio</span>
+    <h1>Small games, <em>made to feel good</em> in the hand.</h1>
+    <p class="lead">
+      Gubloo Play is an independent studio building casual games for mobile players.
+      We keep our teams small, our loops tight, and our worlds warm — the kind of game
+      you open for three minutes and remember for three days.
+    </p>
+    <div class="btns">
+      <a class="btn btn-primary" href="#games">See our games</a>
+      <a class="btn btn-ghost" href="#contact">Work with us</a>
+    </div>
+  </div>
+</section>
+
+<div class="facts">
+  <div class="wrap">
+    <div><div class="face">2019</div><small>Founded</small></div>
+    <div><div class="face">40+</div><small>Titles shipped</small></div>
+    <div><div class="face">180M+</div><small>Downloads</small></div>
+    <div><div class="face">12</div><small>Countries served</small></div>
+  </div>
+</div>
+
+<section id="studio">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">The Studio</span>
+      <h2>We build the games we want to play on the bus.</h2>
+      <p>
+        Gubloo Play started as a three-person team prototyping puzzle loops on weekends.
+        Today we publish across the major mobile platforms, but the working method hasn't
+        changed: prototype fast, test with real players, and only ship what survives the
+        first boring minute.
+      </p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <span class="idx">01</span>
+        <h3>Prototype-first</h3>
+        <p>Every title starts as a playable build within two weeks. If the core loop isn't fun by then, we move on without regret.</p>
+      </div>
+      <div class="card">
+        <span class="idx">02</span>
+        <h3>Player-shaped</h3>
+        <p>We run closed tests with real players before any public release and tune difficulty from their sessions, not our instincts.</p>
+      </div>
+      <div class="card">
+        <span class="idx">03</span>
+        <h3>Lean and calm</h3>
+        <p>No forced timers, no pay-to-win walls. Progression should feel earned, and stopping should always feel safe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flagship" id="games">
+  <div class="wrap flag-grid">
+    <div>
+      <span class="kicker">Flagship Title</span>
+      <h2>Gubloo — a puzzle world that grows with you.</h2>
+      <p>
+        Our flagship release blends match-and-clear puzzles with a light building layer.
+        Each level you finish restores a little more of the town, and each restored
+        corner unlocks a new mechanic instead of simply raising a number.
+      </p>
+      <p>
+        It is designed for short sessions, plays comfortably offline, and never
+        punishes you for putting the phone down mid-level.
+      </p>
+      <div class="chips">
+        <span class="chip">Puzzle</span>
+        <span class="chip">Casual</span>
+        <span class="chip">Offline play</span>
+        <span class="chip">Free to start</span>
+      </div>
+    </div>
+    <div class="art"><span>Gubloo</span></div>
+  </div>
+</section>
+
+<section id="values">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Our Approach</span>
+      <h2>Four rules we don't break.</h2>
+    </div>
+    <div class="values">
+      <div class="val">
+        <h3>Respect the player's time</h3>
+        <p>Sessions are short by design. Nothing in our games requires you to log in daily to stay competitive.</p>
+      </div>
+      <div class="val">
+        <h3>Honest monetisation</h3>
+        <p>Ads and purchases are optional and clearly labelled. We never hide the price of progress.</p>
+      </div>
+      <div class="val">
+        <h3>Privacy by default</h3>
+        <p>We collect the minimum needed to run the game, and we say plainly what that means in our policy.</p>
+      </div>
+      <div class="val">
+        <h3>Fix it, then ship it</h3>
+        <p>Known crashes get patched before new content. Stability is a feature, not a chore.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Get in touch</span>
+      <h2>Publishers, partners, and players — all welcome.</h2>
+      <p>
+        Whether you want to discuss a publishing partnership, report a bug, or ask
+        a question about your data, our team reads every message that reaches the
+        studio inbox.
+      </p>
+    </div>
+    <div class="mailbox">
+      <div class="row">
+        <small>General &amp; Support</small>
+        <a href="mailto:mujahidgrand5@gmail.com">mujahidgrand5@gmail.com</a>
+      </div>
+      <div class="row">
+        <small>Business &amp; Publishing</small>
+        <a href="mailto:mujahidgrand5@gmail.com">mujahidgrand5@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Gubloo Play. All rights reserved.</div>
+    <nav>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
